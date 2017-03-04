@@ -46,22 +46,22 @@ void MainWindow::updateView(){
 		if (mExpired){
 			mExpired = false;
 			this->setStyleSheet("");
-			ui.progressBarRemins->setStyleSheet("color: rgb(0, 0, 0);");
+			ui.progressBarRemains->setStyleSheet("color: rgb(0, 0, 0);");
 		}
-		ui.progressBarRemins->setValue(elapsedTotal_ms);
+		ui.progressBarRemains->setValue(elapsedTotal_ms);
 	}
 	else{
 		// Expired
 		if (!mExpired){
 			mExpired = true;
 			this->setStyleSheet("background-color: rgb(255, 194, 194);");
-			ui.progressBarRemins->setStyleSheet("color: rgb(255, 0, 0);");
-			ui.progressBarRemins->setValue(mDelay_ms);
+			ui.progressBarRemains->setStyleSheet("color: rgb(255, 0, 0);");
+			ui.progressBarRemains->setValue(mDelay_ms);
 			QApplication::alert(this, 0);
 		}
 	}
 
-	ui.progressBarRemins->setFormat(elapsed.toString("mm:ss"));
+	ui.progressBarRemains->setFormat(elapsed.toString("mm:ss"));
 	return;
 }
 
@@ -78,9 +78,9 @@ void MainWindow::onBtnOptions(){
 
 void MainWindow::onTimeEditChanged(QTime time){
 	mDelay_ms = (time.minute()*60 + time.second()) * 1000;
-	ui.progressBarRemins->setMaximum(mDelay_ms);
+	ui.progressBarRemains->setMaximum(mDelay_ms);
 	if (mExpired){
-		ui.progressBarRemins->setValue(mDelay_ms);
+		ui.progressBarRemains->setValue(mDelay_ms);
 	}
 
 	updateView();
