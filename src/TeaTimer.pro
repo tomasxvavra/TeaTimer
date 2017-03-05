@@ -22,3 +22,6 @@ HEADERS  += gui/mainwindow.h \
     timeedit.h
 
 FORMS    += gui/mainwindow.ui
+
+RESOURCES += \
+    resources.qrc
