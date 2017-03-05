@@ -5,13 +5,13 @@ Simple Qt5 application to measure a steep time of a tea.
 
 # Features
 
-* Minimalistic and very simple to use.
-* Countdown starts automatically after start. Restart button may be used to start later.
-* Change desired time when ever you desire.
+* Minimalistic and very easy to use.
+* Countdown starts automatically after start. Restart button may be used for delayed start.
+* Change desired time whenever you desire.
 * Timer does not stop after timeout - you can change your mind and increase steep time. If you forget about your tea, you will still know how long it was steeped.
 * Stays always on top, so you will not forget about it :)
 * Visual alarm after timeout.
-* Select desired time manually o from from drop down menu.
+* Select desired time manually or from from a drop down menu.
 
 ## Tested platforms
 
