@@ -1,5 +1,5 @@
 # TeaTimer
-Simple Qt application to measure a steep time of a tea.
+Simple Qt5 application to measure a steep time of a tea.
 
 ![alt tag](https://raw.githubusercontent.com/tomasxvavra/TeaTimer/master/screen/screen_app.jpg)
 
@@ -17,6 +17,13 @@ Simple Qt application to measure a steep time of a tea.
 
 * Linux Mint 18.1 Serena
 * TODO
+
+# Building
+
+    git clone https://github.com/tomasxvavra/TeaTimer.git
+    cd TeaTimer && mkdir build && cd build
+    qmake ../src/TeaTimer.pro
+    make
 
 # TODO
 
