@@ -20,46 +20,15 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTimeEdit" name="timeEditDelay">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="dateTime">
-        <datetime>
-         <hour>0</hour>
-         <minute>1</minute>
-         <second>30</second>
-         <year>2000</year>
-         <month>1</month>
-         <day>1</day>
-        </datetime>
-       </property>
-       <property name="minimumTime">
-        <time>
-         <hour>0</hour>
-         <minute>0</minute>
-         <second>1</second>
-        </time>
-       </property>
-       <property name="currentSection">
-        <enum>QDateTimeEdit::MinuteSection</enum>
-       </property>
-       <property name="displayFormat">
-        <string>mm:ss</string>
-       </property>
-       <property name="time">
-        <time>
-         <hour>0</hour>
-         <minute>1</minute>
-         <second>30</second>
-        </time>
-       </property>
-      </widget>
+      <widget class="TimeEdit" name="timeEditDelay" native="true"/>
      </item>
      <item>
       <widget class="QToolButton" name="toolButton">
        <property name="text">
         <string>...</string>
+       </property>
+       <property name="popupMode">
+        <enum>QToolButton::InstantPopup</enum>
        </property>
       </widget>
      </item>
@@ -106,6 +75,14 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>TimeEdit</class>
+   <extends>QWidget</extends>
+   <header>timeedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
