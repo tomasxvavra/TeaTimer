@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMenu>
 
 static constexpr auto UPDATE_PERIOD_MS = 1000;
 
@@ -17,6 +18,32 @@ MainWindow::MainWindow(QWidget *parent) :
 			this,					SLOT(onBtnRestart()));
 	connect(ui.timeEditDelay,		SIGNAL(timeChanged(QTime)),
 			this,					SLOT(onTimeEditChanged(QTime)));
+
+	QVector<QTime> mTimes = {
+		QTime(0,0,30),
+		QTime(0,0,45),
+		QTime(0,1,0),
+		QTime(0,1,15),
+		QTime(0,1,30),
+		QTime(0,1,45),
+		QTime(0,2,0),
+		QTime(0,2,15),
+		QTime(0,2,30),
+		QTime(0,2,45),
+		QTime(0,3,0),
+		QTime(0,3,30),
+		QTime(0,4,0),
+		QTime(0,5,0),
+		QTime(0,6,0),
+	};
+
+	for (QTime & time : mTimes){
+		Q_ASSERT(time.isValid());
+		auto a = new QAction(time.toString("mm:ss"), this);
+		connect(a,						&QAction::triggered,
+				[this, time](bool){ ui.timeEditDelay->setTime(time); });
+		ui.toolButton->addAction(a);
+	}
 
 	setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
 
