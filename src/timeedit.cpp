@@ -69,13 +69,16 @@ void TimeEdit::stepBy(int steps){
 	}
 	else if (section == QTimeEdit::MinuteSection){
 		// Provide underflow of 1 minute to 60-STEP_SEC seconds
-		if (steps == -1 && t.minute() == 1){
-			setTime(QTime(0,0,60-STEP_SEC));
-			setCurrentSection(QTimeEdit::SecondSection);
-			return;
-		}
-		else if (t.minute() == 0){
-			return;	// Do not wrap to 59
+		if (steps == -1){
+			// Modify only decrementing
+			if (t.minute() == 1){
+				setTime(QTime(0,0,60-STEP_SEC));
+				setCurrentSection(QTimeEdit::SecondSection);
+				return;
+			}
+			else if (t.minute() == 0){
+				return;	// Do not wrap to 59
+			}
 		}
 	}
 
