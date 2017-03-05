@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         gui/mainwindow.cpp \
-    settings.cpp
+    settings.cpp \
+    timeedit.cpp
 
 HEADERS  += gui/mainwindow.h \
-    settings.h
+    settings.h \
+    timeedit.h
 
 FORMS    += gui/mainwindow.ui
