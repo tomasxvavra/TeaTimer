@@ -49,9 +49,7 @@ void TimeEdit::stepBy(int steps){
 				// Enable underflow
 				if (under < 0){
 					// Underflow
-					if (t.minute() > 0){
-						setTime(QTime(0,t.minute()-1,60+under));
-					}
+					setTime(QTime(0,t.minute()-1,60+under));
 					return;	// Do not wrap the seconds
 				}
 			}
