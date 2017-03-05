@@ -6,6 +6,9 @@ static constexpr auto STEP_SEC = 5;
 TimeEdit::TimeEdit(QWidget *parent) :
 	QTimeEdit(parent)
 {
+	QFont font;
+	font.setPointSize(12);
+	setFont(font);
 	setWrapping(true);
 	setDateTime(QDateTime(QDate(2000, 1, 1), QTime(0, 1, 30)));
 	setMinimumTime(QTime(0, 0, MIN_SECS));
