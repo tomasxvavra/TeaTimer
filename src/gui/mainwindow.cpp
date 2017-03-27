@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMenu>
+#include "settings.h"
 
 static constexpr auto UPDATE_PERIOD_MS = 1000;
 
@@ -11,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
 	mUpdateTimer.start(UPDATE_PERIOD_MS);
 	ui.setupUi(this);
 	adjustSize();
+
+	auto duration = Settings::get().lastDuration();
+	ui.timeEditDelay->setTime(QTime(0,0,0).addSecs(duration));
 
 	connect(&mUpdateTimer,			SIGNAL(timeout()),
 			this,					SLOT(updateView()));
@@ -52,7 +56,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-
+	auto duration = QTime(0,0,0).secsTo(ui.timeEditDelay->time());
+	Settings::get().lastDuration(duration);
 }
 
 void MainWindow::updateView(){
