@@ -12,6 +12,7 @@ Simple Qt5 application to measure a steep time of a tea.
 * Stays always on top, so you will not forget about it :)
 * Visual alarm after timeout.
 * Select desired time manually or from from a drop down menu.
+* Remembers last steep duration
 
 ## Tested platforms
 
@@ -28,7 +29,6 @@ Simple Qt5 application to measure a steep time of a tea.
 # TODO
 
 * Implement settings
-    * Last used duration.
     * Stay on top behavior.
 * Nicer visual alarm.
 * Test on more platforms.
