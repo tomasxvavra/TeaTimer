@@ -65,6 +65,7 @@ void MainWindow::updateView(){
 	qint64 elapsedTotal_ms = mElapsedTimer.elapsed();
 	qint64 elapsed_ms = elapsedTotal_ms;
 	qint64 elapsed_s = elapsed_ms/1000;
+	elapsed_ms = elapsed_ms - elapsed_s*1000;
 
 	auto elapsed = QTime(0,0,0).addMSecs(elapsed_ms).addSecs(elapsed_s);
 	if (!elapsed.isValid()){
