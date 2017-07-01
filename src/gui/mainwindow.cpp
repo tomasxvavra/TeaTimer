@@ -4,6 +4,7 @@
 #include "settings.h"
 
 static constexpr auto UPDATE_PERIOD_MS = 1000;
+static constexpr auto ALARM_FLASH_PERIOD_MS = 400;
 
 MainWindow::MainWindow(QWidget *parent) :
 	QWidget(parent)
@@ -22,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent) :
 			this,					SLOT(onBtnRestart()));
 	connect(ui.timeEditDelay,		SIGNAL(timeChanged(QTime)),
 			this,					SLOT(onTimeEditChanged(QTime)));
+	connect(&mFlashTimer,			SIGNAL(timeout()),
+			this,					SLOT(onAlarmFlash()));
 
 	QVector<QTime> mTimes = {
 		QTime(0,0,30),
@@ -60,6 +63,18 @@ MainWindow::~MainWindow()
 	Settings::get().lastDuration(duration);
 }
 
+void MainWindow::drawAlarm(bool aActive){
+	if (aActive){
+		this->setStyleSheet("background-color: rgb(255, 194, 194);");
+		ui.progressBarRemains->setStyleSheet("color: rgb(255, 0, 0);");
+	}
+	else{
+		// Reset style sheets
+		this->setStyleSheet("");
+		ui.progressBarRemains->setStyleSheet("color: rgb(0, 0, 0);");
+	}
+}
+
 void MainWindow::updateView(){
 	// Construct elapsed QTime
 	qint64 elapsedTotal_ms = mElapsedTimer.elapsed();
@@ -76,8 +91,8 @@ void MainWindow::updateView(){
 		// Not expired
 		if (mExpired){
 			mExpired = false;
-			this->setStyleSheet("");
-			ui.progressBarRemains->setStyleSheet("color: rgb(0, 0, 0);");
+			mFlashTimer.stop();
+			drawAlarm(false);
 		}
 		ui.progressBarRemains->setValue(elapsedTotal_ms);
 	}
@@ -85,9 +100,9 @@ void MainWindow::updateView(){
 		// Expired
 		if (!mExpired){
 			mExpired = true;
-			this->setStyleSheet("background-color: rgb(255, 194, 194);");
-			ui.progressBarRemains->setStyleSheet("color: rgb(255, 0, 0);");
-			ui.progressBarRemains->setValue(mDelay_ms);
+			mAlarmState = true;
+			mFlashTimer.start(ALARM_FLASH_PERIOD_MS/2);	// Start the flashing alarm
+			ui.progressBarRemains->setValue(mDelay_ms);	// Why?
 			QApplication::alert(this, 0);
 		}
 	}
@@ -115,4 +130,9 @@ void MainWindow::onTimeEditChanged(QTime time){
 	}
 
 	updateView();
+}
+
+void MainWindow::onAlarmFlash(){
+	drawAlarm(mAlarmState);
+	mAlarmState = !mAlarmState;
 }

@@ -18,14 +18,19 @@ private:
 	Ui::MainWindow ui;
 	QElapsedTimer mElapsedTimer;
 	QTimer mUpdateTimer;
+	QTimer mFlashTimer;
 	bool mExpired;
 	qint64 mDelay_ms;
+	bool mAlarmState;
+
+	void drawAlarm(bool aActive);
 
 private slots:
 	void updateView();
 	void onBtnRestart();
 	void onBtnOptions();
 	void onTimeEditChanged(QTime);
+	void onAlarmFlash();
 
 };
 
