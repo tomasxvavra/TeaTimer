@@ -19,7 +19,7 @@ private:
 	QElapsedTimer mElapsedTimer;
 	QTimer mUpdateTimer;
 	QTimer mFlashTimer;
-	bool mExpired;
+	bool mExpired {false};
 	qint64 mDelay_ms;
 	bool mAlarmState;
 
